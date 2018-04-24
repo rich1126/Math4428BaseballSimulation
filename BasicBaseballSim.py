@@ -15,8 +15,17 @@
     
 ##Find simulation parameters (number of runs) at bottom
     
-playerStats = {"Dozier":[0.31, 0.70,0.10,0.02,0.05,0.13]}
-awayLineup = ["Dozier","Dozier","Dozier","Dozier","Dozier","Dozier","Dozier","Dozier","Dozier"]
+playerStats = {"Dozier":[0.359, 0.3822,0.1158,0.0154,0.1313,0.3552], 
+               "Mauer": [0.384, 0.5,0.1552,0.0043,0.0302,0.3103],
+               "Rosario": [0.328,0.4922,0.171,0.0104,0.1399,0.1865],
+               "Kepler": [0.312,0.3966,0.1788,0.0112,0.1061,0.3073],
+               "Polanco": [0.313,0.4675,0.1775,0.0178,0.0769,0.2604],
+               "Buxton": [0.314,0.5031,0.0870,0.0373,0.0994,0.2733],
+               "Escobar": [0.309,0.4713,0.1019,0.0318,0.1338,0.2611],
+               "Sano":[0.352,0.3829,0.0857,0.0114,0.16,0.36],
+               "Grossman":[0.361,0.378,0.1341,0.0061,0.0549,0.4268],
+               "Castro":[0.333, 0.3971,0.1618,0,0.0735,0.3676]}
+awayLineup = ["Dozier","Mauer","Sano","Rosario","Polanco","Kepler","Grossman","Buxton","Castro"]
 homeLineup = ["Dozier","Dozier","Dozier","Dozier","Dozier","Dozier","Dozier","Dozier","Dozier"]
     
 import random
@@ -39,9 +48,9 @@ def singleGame(awayLineup, homeLineup):
             currentBatter = awayLineup[currentBatterIndex]
             OBP = playerStats[currentBatter][0]
             singles = playerStats[currentBatter][1]
-            doubles = playerStats[currentBatter][2]
-            triples = playerStats[currentBatter][3]
-            HR = playerStats[currentBatter][4]
+            doubles = playerStats[currentBatter][2] + singles
+            triples = playerStats[currentBatter][3] + doubles
+            HR = playerStats[currentBatter][4] + triples
                         
             r = random.random()   # Uniform [0,1] selection
             if r > OBP:
@@ -75,9 +84,9 @@ def singleGame(awayLineup, homeLineup):
             currentBatter = homeLineup[currentBatterIndex]
             OBP = playerStats[currentBatter][0]
             singles = playerStats[currentBatter][1]
-            doubles = playerStats[currentBatter][2]
-            triples = playerStats[currentBatter][3]
-            HR = playerStats[currentBatter][4]
+            doubles = playerStats[currentBatter][2]+singles
+            triples = playerStats[currentBatter][3]+doubles
+            HR = playerStats[currentBatter][4]+triples
             
             r = random.random()   # Uniform [0,1] selection
             if r > OBP:
